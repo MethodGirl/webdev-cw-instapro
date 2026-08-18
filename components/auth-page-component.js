@@ -169,4 +169,8 @@ export function renderAuthPageComponent({ appEl, setUser }) {
 
   // Инициализация формы
   renderForm();
+
+  return {
+  renderForm,
+};
 }
