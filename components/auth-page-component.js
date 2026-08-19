@@ -47,14 +47,14 @@ export function renderAuthPageComponent({ appEl, setUser }) {
                     !isLoginMode
                       ? `
                       <div class="upload-image-container"></div>
-                      <input type="text" id="name-input" class="input" placeholder="Имя" />
+                      <input type="text" id="name-input" class="input register-input" placeholder="Имя" />
                       `
                       : ""
                   }
-                  <input type="text" id="login-input" class="input" placeholder="Логин" />
-                  <input type="password" id="password-input" class="input" placeholder="Пароль" />
+                  <input type="text" id="login-input" class="input register-input" placeholder="Логин" />
+                  <input type="password" id="password-input" class="input register-input" placeholder="Пароль" />
                   <div class="form-error"></div>
-                  <button class="button" id="login-button">${
+                  <button class="button login-button register-button" id="login-button">${
                     isLoginMode ? "Войти" : "Зарегистрироваться"
                   }</button>
               </div>
