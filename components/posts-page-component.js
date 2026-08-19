@@ -3,7 +3,7 @@ import { renderHeaderComponent } from "./header-component.js";
 import { posts, goToPage } from "../index.js";
 import { formatDistanceToNow } from "https://esm.sh/date-fns@2.29.3";
 import { ru } from "https://esm.sh/date-fns@2.29.3/locale";
-import { initLikeHandlers} from "../api.js";
+import { initLikeHandlers } from "../api.js";
 import { getToken } from "../index.js";
 
 export function renderPostsPageComponent({ appEl }) {
@@ -29,15 +29,18 @@ export function renderPostsPageComponent({ appEl }) {
         post.likes.length > 1 ? " ещё " + (post.likes.length - 1) : "";
 
       const isLiked = post.isLiked;
-      const likeIconSrc = isLiked 
-    ? './assets/images/like-active.svg' 
-    : './assets/images/like-not-active.svg'
+      const likeIconSrc = isLiked
+        ? "./assets/images/like-active.svg"
+        : "./assets/images/like-not-active.svg";
 
       return `
                   <li class="post">
                     <div class="post-header" data-user-id="${post.user.id}">
                         <img src="${post.user?.imageUrl}" class="post-header__user-image">
-                        <p class="post-header__user-name">${post.user?.name}</p>
+                        <div class post-user>
+                          <p class="post-user__user-name">${post.user?.name}</p>
+                          <p class="post-user__post-date">${formattedDate}</p>
+                        </div>
                     </div>
                     <div class="post-image-container">
                       <img class="post-image" src="${post.imageUrl}">
@@ -53,11 +56,8 @@ export function renderPostsPageComponent({ appEl }) {
                       </p>
                     </div>
                     <p class="post-text">
-                      <span class="user-name">${post?.user.name}</span>
-                      ${post?.description}
-                    </p>
-                    <p class="post-date">
-                     ${formattedDate}
+                      <span class="user-name">${post?.user.name}: </span>
+                      <span class="post-description">${post?.description}</span>
                     </p>
                   </li> `;
     })
@@ -81,3 +81,14 @@ export function renderPostsPageComponent({ appEl }) {
     });
   }
 }
+
+
+
+document.addEventListener('click', (event) => {
+  const target = event.target.closest('.post-description');
+  
+  if (target) {
+    target.classList.toggle('is-open');
+  }
+});
+
