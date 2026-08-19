@@ -28,22 +28,25 @@ export function renderAccountPage() {
       `;
 
       let post = document.createElement("li");
-      post.classList.add("post");
+      post.classList.add("post", "user-post");
 
       post.innerHTML = `
-      <div class="post-image-container">
-        <img src="${userPost.imageUrl}" class="post-image">
+      <div class="post-image-container user-post-image-container">
+        <img src="${userPost.imageUrl}" class="post-image user-post-image">
       </div>
       <div class="post-likes">
-       <button class="like-button" data-post-id = "userPost.id">
+       <button class="like-button" data-post-id = ${userPost.id}>
        <img src="./assets/images/like-not-active.svg">
        </button>
        <p class="post-likes-text"> Нравится:
           ${likesAuthor ? `<strong>${likesAuthor}</strong>` : `<strong>0</strong>`}
-          ${likesNumber ? ` и <strong>${likesNumber}</strong>` : ""}</p>
+          ${likesNumber ? ` и <strong>${likesNumber}</strong>` : ""}</p>   
       </div>
-      <p class="post-text"><span class="user-name">${userPost.user?.name}</span> ${userPost.description}</p>
-      <p class="post-date">${formattedDate}</p>          
+      <p class="post-text">
+          <span class="user-name">${userPost?.user.name}: </span>
+          <span class="post-description">${userPost?.description}</span>
+      </p>   
+       <p class="post-date user-post-date">${formattedDate}</p>      
     `;
 
       let posts = document.querySelector(".posts");
