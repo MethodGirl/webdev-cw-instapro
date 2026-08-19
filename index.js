@@ -17,7 +17,7 @@ import {
 } from "./helpers.js";
 import { renderHeaderComponent } from "./components/header-component.js";
 import { renderAccountPage } from "./components/render-account-page.js";
-import { uploadImage, createPost } from "./api.js";
+import { uploadImage, createPost, initLikeHandlers } from "./api.js";
 
 export let user = getUserFromLocalStorage();
 export let page = null;
@@ -157,13 +157,14 @@ const renderApp = () => {
     <div class = "page-container">
     <div class = "header-container"></div>
     <div class = "posts-user-header"></div>
-    <ul class ="posts"></ul>
+    <ul class ="posts user-posts"></ul>
     </div>`;
 
     let headerContainer = document.querySelector(".header-container");
 
     renderHeaderComponent({ element: headerContainer });
     renderAccountPage();
+    initLikeHandlers({ token: getToken() })
 
     return;
   }
