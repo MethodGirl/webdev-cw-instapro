@@ -4,6 +4,8 @@ import { uploadImage } from "../api.js";
 export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
   const render = () => {
     // @TODO: Реализовать страницу добавления поста
+
+    // СДЕЛАНО
     let appHtml = `
     <div class="page-container">
       <div class="header-container"></div>
@@ -13,16 +15,17 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
           <div class="upload-image-container"> 
           <div class="upload-image">
             <label class="file-upload-label secondary-button">
-                <input type="file" class="file-upload-input" hidden>
-                Выберите фото
+            <span class="icon">📷</span>
+            <span class="label-text text">Выберите фото</span>
+                <input type="file"  id="photoInput" class="file-upload-input" hidden>
             </label>
           </div>
           </div>
-          <label>
+          <label class = "page-label">
             Опишите фотографию:
             <textarea class="input textarea input-textarea" rows="4"></textarea>
             </label>
-            <button class="button" id="add-button">Добавить</button>
+            <button class="button add-photo-button" id="add-button">Добавить</button>
         </div>
       </div>
     </div>
@@ -46,7 +49,7 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
     let changeButton = document.createElement("button");
     changeButton.textContent = "Заменить фото";
     changeButton.classList.add("file-upload-remove-button", "button");
-   
+
     async function handleFileChange(event) {
       const file = event.target.files[0];
 
@@ -58,7 +61,7 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
 
       image.src = result.fileUrl;
       imageUrl = result.fileUrl;
-      
+
       if (!uploadImageBlock.contains(image)) {
         inputLabel.style.display = "none";
 
@@ -82,7 +85,7 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
     });
 
     document.getElementById("add-button").addEventListener("click", () => {
-      let textAreaValue = document.querySelector('.input-textarea').value
+      let textAreaValue = document.querySelector(".input-textarea").value;
 
       onAddPostClick({
         description: textAreaValue,
