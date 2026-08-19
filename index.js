@@ -164,8 +164,8 @@ const renderApp = () => {
 
     renderHeaderComponent({ element: headerContainer });
     renderAccountPage();
-    initLikeHandlers({ token: getToken() })
-
+ initLikeHandlers({ token: getToken() })
+ 
     return;
   }
 };

@@ -17,7 +17,7 @@ export function initLikeHandlers({ token }) {
     button.addEventListener("click", (event) => {
       const postElement = event.currentTarget.closest(".post");
 
-      const likeButtonImg = postElement.querySelector(".like-button img");
+      const likeButtonImg = postElement.querySelector(".like-button-img");
       const likesText = postElement.querySelector(".post-likes-text");
 
       const userPostID = event.currentTarget.dataset.postId;

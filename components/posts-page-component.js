@@ -42,12 +42,12 @@ export function renderPostsPageComponent({ appEl }) {
                           <p class="post-user__post-date">${formattedDate}</p>
                         </div>
                     </div>
-                    <div class="post-image-container">
+                    <div class="post-image-container" style="background-image: url('${post.imageUrl}');">
                       <img class="post-image" src="${post.imageUrl}">
                     </div>
                     <div class="post-likes">
                       <button data-post-id="${post.id}"  class="like-button">
-                        <img src="${likeIconSrc}">
+                        <img src="${likeIconSrc}" class="like-button-img">
                       </button>
                       <p class="post-likes-text">
                         Нравится:  
@@ -82,13 +82,10 @@ export function renderPostsPageComponent({ appEl }) {
   }
 }
 
+document.addEventListener("click", (event) => {
+  const target = event.target.closest(".post-description");
 
-
-document.addEventListener('click', (event) => {
-  const target = event.target.closest('.post-description');
-  
   if (target) {
-    target.classList.toggle('is-open');
+    target.classList.toggle("is-open");
   }
 });
-

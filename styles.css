@@ -233,7 +233,7 @@ h3 {
   padding: 20px;
   background: white;
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
   box-shadow: 0 8px 20px rgba(214, 150, 172, 0.4);
 }
 
@@ -247,7 +247,7 @@ h3 {
 
 .post-description {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   cursor: pointer;
@@ -270,15 +270,35 @@ h3 {
 .post-image-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.post-image-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  transform: scale(1.1);
+  z-index: 1;
 }
 
 .post-image {
-  object-fit: inherit;
-  border-radius: 15px;
-  width: 100%;
-  max-height: 550px;
+  width: auto;
+  max-height: 700px;
   object-position: center;
-  border-radius: 15px;
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  height: auto;
 }
 
 .post-likes {
@@ -661,6 +681,8 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  max-height: 700px;
+  object-position: center;
 }
 
 .post > .user-post-image-container {
@@ -673,12 +695,36 @@ h3 {
 @media (max-width: 1226px) {
   .user-post-image-container > .user-post-image {
     max-height: 345px;
+    width: auto;
+    height: auto;
     object-fit: cover;
-    object-position: top;
+    object-position: center;
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+  }
+
+  .user-post-image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    transform: scale(1.1);
+    z-index: 1;
   }
 
   .post > .user-post-image-container {
     aspect-ratio: unset;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
 
   .posts > .user-post {
@@ -693,6 +739,32 @@ h3 {
     place-items: center;
     margin-inline: 10px;
   }
+
+  .posts > .user-post {
+    min-height: unset;
+    max-height: 500px;
+    max-width: 580px;
+  }
+}
+
+@media (max-width: 500px) {
+  .user-post-image-container > .user-post-image {
+    max-height: 345px;
+    width: auto;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .post > .user-post-image-container {
+    max-height: 400px;
+  }
+
+  .posts > .user-post {
+    min-height: unset;
+  }
 }
 
 @media (max-width: 429px) {
@@ -702,12 +774,6 @@ h3 {
   .posts > .user-post {
     max-width: 300px;
     min-height: 350px;
-  }
-}
-
-@media (max-width: 500px) {
-  .post-image {
-    max-height: 415px;
   }
 }
 
