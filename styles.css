@@ -647,6 +647,7 @@ h3 {
 
 .posts > .user-post {
   margin: 0;
+  cursor: pointer;
   max-height: 555px;
 }
 
