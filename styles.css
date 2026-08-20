@@ -235,6 +235,11 @@ h3 {
   width: 100%;
   max-width: 900px;
   box-shadow: 0 8px 20px rgba(214, 150, 172, 0.4);
+  transition: box-shadow ease 0.3s;
+}
+
+.user-post:hover{
+   box-shadow: 0px 0px 20px rgb(219 42 104 / 40%);
 }
 
 .post-header {
