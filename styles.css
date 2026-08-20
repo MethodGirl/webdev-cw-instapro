@@ -203,6 +203,7 @@ h3 {
   line-height: 18px;
   font-weight: 400;
   width: 130px;
+  color: black;
   cursor: pointer;
 }
 
@@ -697,9 +698,13 @@ h3 {
   border-radius: 15px;
 }
 
+.user-post:last-of-type {
+    margin-bottom:40px;
+  }
+
 @media (max-width: 1226px) {
   .user-post-image-container > .user-post-image {
-    max-height: 345px;
+    max-height: 430px;
     width: auto;
     height: auto;
     object-fit: cover;
@@ -734,8 +739,12 @@ h3 {
 
   .posts > .user-post {
     margin: 0;
-    min-height: 503px;
+    min-height: 480px;
     max-height: unset;
+  }
+
+  .user-post:last-of-type {
+    margin-bottom:40px;
   }
 }
 
@@ -747,6 +756,7 @@ h3 {
   .post-image {
     max-height: 497px;
 }
+
 }
 
 @media (max-width: 821px) {
@@ -757,7 +767,7 @@ h3 {
 
   .posts > .user-post {
     min-height: unset;
-    max-height: 500px;
+    max-height: 560px;
     max-width: 580px;
   }
 }
@@ -780,15 +790,18 @@ h3 {
   .posts > .user-post {
     min-height: unset;
   }
+
+  .add-post-sign {
+    margin-left: 35px;
+  }
 }
 
 @media (max-width: 429px) {
   .user-post-image-container > .user-post-image {
-    max-width: 250px;
+    max-width: 100%;
   }
   .posts > .user-post {
-    max-width: 300px;
-    min-height: 350px;
+    min-height: 400px;
   }
 }
 
