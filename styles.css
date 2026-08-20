@@ -239,8 +239,8 @@ h3 {
   transition: box-shadow ease 0.3s;
 }
 
-.user-post:hover{
-   box-shadow: 0px 0px 20px rgb(219 42 104 / 40%);
+.user-post:hover {
+  box-shadow: 0px 0px 20px rgb(219 42 104 / 40%);
 }
 
 .post-header {
@@ -699,8 +699,8 @@ h3 {
 }
 
 .user-post:last-of-type {
-    margin-bottom:40px;
-  }
+  margin-bottom: 40px;
+}
 
 @media (max-width: 1226px) {
   .user-post-image-container > .user-post-image {
@@ -744,7 +744,7 @@ h3 {
   }
 
   .user-post:last-of-type {
-    margin-bottom:40px;
+    margin-bottom: 40px;
   }
 }
 
@@ -755,8 +755,7 @@ h3 {
 
   .post-image {
     max-height: 497px;
-}
-
+  }
 }
 
 @media (max-width: 821px) {
@@ -769,6 +768,10 @@ h3 {
     min-height: unset;
     max-height: 560px;
     max-width: 580px;
+  }
+
+  .user-post:last-of-type {
+    margin-bottom: 80px;
   }
 }
 
@@ -797,11 +800,9 @@ h3 {
 }
 
 @media (max-width: 429px) {
-  .user-post-image-container > .user-post-image {
-    max-width: 100%;
-  }
   .posts > .user-post {
     min-height: 400px;
+    max-width: 350px;
   }
 }
 
