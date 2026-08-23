@@ -18,6 +18,10 @@ export function renderAccountPage() {
     const likesAuthor = userPost.likes.length > 0 ? userPost.likes[0].name : "";
 
     const likesNumber =
+    /**
+     * REVIEW:
+     * лучше использовать template literals, более читабельно выглядит.
+     */
       userPost.likes.length > 1 ? " ещё " + (userPost.likes.length - 1) : "";
 
     let userHeader = document.querySelector(".posts-user-header");
@@ -30,6 +34,12 @@ export function renderAccountPage() {
     let post = document.createElement("li");
     post.classList.add("post", "user-post");
 
+    /**
+     * REVIEW:
+     * post - это DOM-элемент, который ты только что создала,
+     * на нем по умолчанию нет свойства isLiked, оно здесь всегда undefined.
+     * Полагаю ты имела ввиду userPost.
+     */
     const isLiked = post.isLiked;
     const likeIconSrc = isLiked
       ? "./assets/images/like-active.svg"

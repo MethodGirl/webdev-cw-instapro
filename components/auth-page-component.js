@@ -30,7 +30,18 @@ export function renderAuthPageComponent({ appEl, setUser }) {
    * Рендерит форму авторизации или регистрации.
    * В зависимости от значения `isLoginMode` отображает соответствующий интерфейс.
    */
+  /**
+  * REVIEW:
+  * Опять же название не отображает то, что делает функция:
+  * называется "отрисовать Форму", а рендерит всю страницу
+  */
   const renderForm = () => {
+    /**
+     * REVIEW:
+     * app - чаще всего это корневой элемент приложения,
+     * а эта функция рендерит СТРАНИЦУ, поэтому называть
+     * переменную appHtml некорректно. Это должен быть pageHtml.
+     */
     const appHtml = `
       <div class="page-container">
           <div class="header-container"></div>
@@ -87,6 +98,11 @@ export function renderAuthPageComponent({ appEl, setUser }) {
 
     // Если режим регистрации, рендерим компонент загрузки изображения
     const uploadImageContainer = appEl.querySelector(".upload-image-container");
+    /**
+     * REVIEW:
+     * Для оперделения режима регистрации, лучше использовать отдельный флаг,
+     * т.к. ДОМ-элементы могут быть и в режиме входа, и в любом другом.
+     */
     if (uploadImageContainer) {
       renderUploadImageComponent({
         element: uploadImageContainer,
@@ -170,6 +186,10 @@ export function renderAuthPageComponent({ appEl, setUser }) {
   // Инициализация формы
   renderForm();
 
+  /**
+  * REVIEW:
+  * лишний экспорт фукнции, родительская и так рендерит страницу.
+  */
   return {
   renderForm,
 };

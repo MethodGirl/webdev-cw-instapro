@@ -14,6 +14,10 @@ export function renderPostsPageComponent({ appEl }) {
   const postsList = document.createElement("ul");
   postsList.classList.add("posts");
 
+  /**
+     * REVIEW:
+     * map().join() - норм решение, но можно уместить в один reduce().
+     */ 
   const appHtml = posts
     .map((post, index) => {
       const createdAt = new Date(post.createdAt);
@@ -69,6 +73,11 @@ export function renderPostsPageComponent({ appEl }) {
     element: document.querySelector(".header-container"),
   });
 
+  /**
+   * REVIEW:
+   * уже ранее (на 73 строке) ты выполняла поиск document.querySelector(".header-container"),
+   * поэтому тут можно использовать уже найденный элемент, вынесенный в отдельную переменную.
+   */
   let headerContainer = document.querySelector(".header-container");
 
   headerContainer.after(postsList);

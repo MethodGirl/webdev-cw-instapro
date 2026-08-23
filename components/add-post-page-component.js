@@ -6,6 +6,12 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
     // @TODO: Реализовать страницу добавления поста
 
     // СДЕЛАНО
+    /**
+     * REVIEW:
+     * app - чаще всего это корневой элемент приложения,
+     * а эта функция рендерит СТРАНИЦУ, поэтому называть
+     * переменную appHtml некорректно. Это должен быть pageHtml.
+     */
     let appHtml = `
     <div class="page-container">
       <div class="header-container"></div>
@@ -46,6 +52,9 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
     let image = document.createElement("img");
     image.classList.add("file-upload-image");
 
+    // REVIEW: 
+    // Лучше назвать более специфично, относительно того, что делает эта
+    // кнопка - она меняет фото, значит лучше назвать changePhotoButton.
     let changeButton = document.createElement("button");
     changeButton.textContent = "Заменить фото";
     changeButton.classList.add("file-upload-remove-button", "button");
