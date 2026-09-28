@@ -35,14 +35,14 @@ export function renderAuthPageComponent({ appEl, setUser }) {
   * Опять же название не отображает то, что делает функция:
   * называется "отрисовать Форму", а рендерит всю страницу
   */
-  const renderForm = () => {
+  const renderPage = () => {
     /**
      * REVIEW:
      * app - чаще всего это корневой элемент приложения,
      * а эта функция рендерит СТРАНИЦУ, поэтому называть
-     * переменную appHtml некорректно. Это должен быть pageHtml.
+     * переменную pageHtml некорректно. Это должен быть pageHtml.
      */
-    const appHtml = `
+    const pageHtml = `
       <div class="page-container">
           <div class="header-container"></div>
           <div class="form">
@@ -81,7 +81,7 @@ export function renderAuthPageComponent({ appEl, setUser }) {
       </div>    
     `;
 
-    appEl.innerHTML = appHtml;
+    appEl.innerHTML = pageHtml;
 
     /**
      * Устанавливает сообщение об ошибке в форме.
@@ -179,18 +179,18 @@ export function renderAuthPageComponent({ appEl, setUser }) {
     // Обработка переключения режима (вход ↔ регистрация)
     document.getElementById("toggle-button").addEventListener("click", () => {
       isLoginMode = !isLoginMode;
-      renderForm(); // Перерисовываем форму с новым режимом
+      renderPage(); // Перерисовываем форму с новым режимом
     });
   };
 
   // Инициализация формы
-  renderForm();
+  renderPage();
 
   /**
   * REVIEW:
   * лишний экспорт фукнции, родительская и так рендерит страницу.
   */
   return {
-  renderForm,
+  renderPage,
 };
 }

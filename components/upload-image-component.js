@@ -35,6 +35,7 @@ export function renderUploadImageComponent({ element, onImageUrlChange }) {
             `
             : `
             <label class="file-upload-label secondary-button">
+             <span class="icon">📷</span>
               <input
                 type="file"
                 class="file-upload-input"

@@ -525,9 +525,11 @@ h3 {
 }
 
 .file-upload-label {
-  display: inline-block;
   box-sizing: border-box;
   width: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
@@ -646,6 +648,8 @@ h3 {
 .file-upload-label .icon {
   font-size: 20px;
   transition: transform 0.5s ease;
+  display: inline-block;
+      padding-bottom: 5px;
 }
 
 .file-upload-label:hover .icon {
