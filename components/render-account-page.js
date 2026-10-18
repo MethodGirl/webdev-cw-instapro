@@ -22,7 +22,9 @@ export function renderAccountPage() {
      * REVIEW:
      * лучше использовать template literals, более читабельно выглядит.
      */
-      userPost.likes.length > 1 ? " ещё " + (userPost.likes.length - 1) : "";
+      userPost.likes.length > 1 
+      ? " ещё " + (userPost.likes.length - 1) 
+      : "";
 
     let userHeader = document.querySelector(".posts-user-header");
 
@@ -40,7 +42,7 @@ export function renderAccountPage() {
      * на нем по умолчанию нет свойства isLiked, оно здесь всегда undefined.
      * Полагаю ты имела ввиду userPost.
      */
-    const isLiked = post.isLiked;
+    const isLiked = userPost.isLiked;
     const likeIconSrc = isLiked
       ? "./assets/images/like-active.svg"
       : "./assets/images/like-not-active.svg";

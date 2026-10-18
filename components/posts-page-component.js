@@ -15,29 +15,30 @@ export function renderPostsPageComponent({ appEl }) {
   postsList.classList.add("posts");
 
   /**
-     * REVIEW:
-     * map().join() - норм решение, но можно уместить в один reduce().
-     */ 
-  const appHtml = posts
-    .map((post, index) => {
-      const createdAt = new Date(post.createdAt);
+   * REVIEW:
+   * map().join() - норм решение, но можно уместить в один reduce().
+   */
+  const appHtml = posts.reduce((html, post) => {
+    const createdAt = new Date(post.createdAt);
 
-      const formattedDate = formatDistanceToNow(createdAt, {
-        addSuffix: true,
-        locale: ru,
-      });
+    const formattedDate = formatDistanceToNow(createdAt, {
+      addSuffix: true,
+      locale: ru,
+    });
 
-      const likesAuthor = post.likes.length > 0 ? post.likes[0].name : "";
+    const likesAuthor = post.likes.length > 0 ? post.likes[0].name : "";
 
-      const likesNumber =
-        post.likes.length > 1 ? " ещё " + (post.likes.length - 1) : "";
+    const likesNumber =
+      post.likes.length > 1 ? " ещё " + (post.likes.length - 1) : "";
 
-      const isLiked = post.isLiked;
-      const likeIconSrc = isLiked
-        ? "./assets/images/like-active.svg"
-        : "./assets/images/like-not-active.svg";
+    const isLiked = post.isLiked;
+    const likeIconSrc = isLiked
+      ? "./assets/images/like-active.svg"
+      : "./assets/images/like-not-active.svg";
 
-      return `
+    return (
+      html +
+      `
                   <li class="post">
                     <div class="post-header" data-user-id="${post.user.id}">
                         <img src="${post.user?.imageUrl}" class="post-header__user-image">
@@ -63,24 +64,25 @@ export function renderPostsPageComponent({ appEl }) {
                       <span class="user-name">${post?.user.name}: </span>
                       <span class="post-description">${post?.description}</span>
                     </p>
-                  </li> `;
-    })
-    .join("");
+                  </li> `
+    );
+  }, "");
 
   postsList.innerHTML = appHtml;
+
+  let headerContainer = document.querySelector(".header-container");
 
   renderHeaderComponent({
     element: document.querySelector(".header-container"),
   });
 
+  headerContainer.after(postsList);
   /**
    * REVIEW:
    * уже ранее (на 73 строке) ты выполняла поиск document.querySelector(".header-container"),
    * поэтому тут можно использовать уже найденный элемент, вынесенный в отдельную переменную.
    */
-  let headerContainer = document.querySelector(".header-container");
 
-  headerContainer.after(postsList);
   initLikeHandlers({ token: getToken() });
   for (let userEl of document.querySelectorAll(".post-header")) {
     userEl.addEventListener("click", () => {
