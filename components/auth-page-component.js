@@ -30,8 +30,19 @@ export function renderAuthPageComponent({ appEl, setUser }) {
    * Рендерит форму авторизации или регистрации.
    * В зависимости от значения `isLoginMode` отображает соответствующий интерфейс.
    */
-  const renderForm = () => {
-    const appHtml = `
+  /**
+   * REVIEW:
+   * Опять же название не отображает то, что делает функция:
+   * называется "отрисовать Форму", а рендерит всю страницу
+   */
+  const renderPage = () => {
+    /**
+     * REVIEW:
+     * app - чаще всего это корневой элемент приложения,
+     * а эта функция рендерит СТРАНИЦУ, поэтому называть
+     * переменную pageHtml некорректно. Это должен быть pageHtml.
+     */
+    const pageHtml = `
       <div class="page-container">
           <div class="header-container"></div>
           <div class="form">
@@ -70,7 +81,7 @@ export function renderAuthPageComponent({ appEl, setUser }) {
       </div>    
     `;
 
-    appEl.innerHTML = appHtml;
+    appEl.innerHTML = pageHtml;
 
     /**
      * Устанавливает сообщение об ошибке в форме.
@@ -85,9 +96,16 @@ export function renderAuthPageComponent({ appEl, setUser }) {
       element: document.querySelector(".header-container"),
     });
 
-    // Если режим регистрации, рендерим компонент загрузки изображения
-    const uploadImageContainer = appEl.querySelector(".upload-image-container");
-    if (uploadImageContainer) {
+    /**
+     * REVIEW:
+     * Для оперделения режима регистрации, лучше использовать отдельный флаг,
+     * т.к. ДОМ-элементы могут быть и в режиме входа, и в любом другом.
+     */
+    if (!isLoginMode) {
+      const uploadImageContainer = appEl.querySelector(
+        ".upload-image-container",
+      );
+
       renderUploadImageComponent({
         element: uploadImageContainer,
         onImageUrlChange(newImageUrl) {
@@ -163,14 +181,15 @@ export function renderAuthPageComponent({ appEl, setUser }) {
     // Обработка переключения режима (вход ↔ регистрация)
     document.getElementById("toggle-button").addEventListener("click", () => {
       isLoginMode = !isLoginMode;
-      renderForm(); // Перерисовываем форму с новым режимом
+      renderPage(); // Перерисовываем форму с новым режимом
     });
   };
 
   // Инициализация формы
-  renderForm();
+  renderPage();
 
-  return {
-  renderForm,
-};
+  /**
+   * REVIEW:
+   * лишний экспорт фукнции, родительская и так рендерит страницу.
+   */
 }

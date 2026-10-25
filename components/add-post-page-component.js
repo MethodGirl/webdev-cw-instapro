@@ -1,25 +1,15 @@
 import { renderHeaderComponent } from "./header-component.js";
-import { uploadImage } from "../api.js";
+import { renderUploadImageComponent } from "./upload-image-component.js";
 
 export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
   const render = () => {
-    // @TODO: Реализовать страницу добавления поста
-
-    // СДЕЛАНО
-    let appHtml = `
+    let pageHtml = `
     <div class="page-container">
       <div class="header-container"></div>
       <div class="form">
         
         <h3 class="form-title">Добавить пост</h3><div class="form-inputs">
-          <div class="upload-image-container"> 
-          <div class="upload-image">
-            <label class="file-upload-label secondary-button">
-            <span class="icon">📷</span>
-            <span class="label-text text">Выберите фото</span>
-                <input type="file"  id="photoInput" class="file-upload-input" hidden>
-            </label>
-          </div>
+          <div class="upload-image-container">    
           </div>
           <label class = "page-label">
             Опишите фотографию:
@@ -31,57 +21,21 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
     </div>
   `;
 
-    appEl.innerHTML = appHtml;
+    appEl.innerHTML = pageHtml;
 
     let headerContainer = document.querySelector(".header-container");
 
     renderHeaderComponent({ element: headerContainer });
 
-    let fileInput = document.querySelector(".file-upload-input");
-
-    let inputLabel = document.querySelector(".file-upload-label");
-    let uploadImageBlock = document.querySelector(".upload-image");
+    let uploadImagContainer = document.querySelector(".upload-image-container");
 
     let imageUrl = "";
-    let image = document.createElement("img");
-    image.classList.add("file-upload-image");
 
-    let changeButton = document.createElement("button");
-    changeButton.textContent = "Заменить фото";
-    changeButton.classList.add("file-upload-remove-button", "button");
-
-    async function handleFileChange(event) {
-      const file = event.target.files[0];
-
-      if (!file) {
-        return;
-      }
-
-      const result = await uploadImage({ file });
-
-      image.src = result.fileUrl;
-      imageUrl = result.fileUrl;
-
-      if (!uploadImageBlock.contains(image)) {
-        inputLabel.style.display = "none";
-
-        uploadImageBlock.prepend(image);
-        uploadImageBlock.append(changeButton);
-      }
-
-      inputLabel.style.display = "none";
-      uploadImageBlock.style.display = "flex";
-      uploadImageBlock.style.alignItems = "center";
-    }
-
-    fileInput?.addEventListener("change", handleFileChange);
-
-    changeButton?.addEventListener("click", () => {
-      image.remove();
-      changeButton.remove();
-
-      inputLabel.style.display = "inline-block";
-      fileInput.value = "";
+    renderUploadImageComponent({
+      element: uploadImagContainer,
+      onImageUrlChange: (url) => {
+        imageUrl = url;
+      },
     });
 
     document.getElementById("add-button").addEventListener("click", () => {
